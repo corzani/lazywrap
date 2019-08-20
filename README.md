@@ -9,14 +9,14 @@ from lazywrap import lazywrap
 from itertools import count
 
 
-def odds(x):
+def is_even(x):
     return x % 2 == 0
 
 
 something = lazywrap(count()) \
     .map(lambda x: x + 1) \
     .filter(lambda x: x > 10) \
-    .filterfalse(odds) \
+    .filterfalse(is_even) \
     .chain(count(50)) \
     .slice(30) \
     .reduce(operator.add)
