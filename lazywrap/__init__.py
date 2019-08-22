@@ -2,7 +2,7 @@ from itertools import *
 from functools import *
 
 
-def lazywrap(__iterator):
+def of(__iterator):
     return LazyWrap(__iterator)
 
 
@@ -40,6 +40,12 @@ class LazyWrap:
 
     def chain(self, *iterables):
         return self.__set_op(chain(self.__iterator, *iterables))
+
+    def cycle(self):
+        return self.__set_op(cycle(self.__iterator))
+
+    def groupby(self, *args, **kwargs):
+        return self.__set_op(groupby(self.__iterator, *args, **kwargs))
 
     def reduce(self, __function, *args, **kwargs):
         return reduce(__function, self.__iterator, *args, **kwargs)
